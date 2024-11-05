@@ -41,21 +41,6 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        List<ClienteEntity> clientes = clienteService.getClientes();
-        if (clientes.isEmpty()) {
-            return ResponseEntity.ok("Aucun client trouvé.");
-        } else {
-            return ResponseEntity.ok("Clients trouvés : " + clientes.size());
-        }
-    }
-
-    @GetMapping("/simple")
-    public ResponseEntity<String> simple() {
-        return ResponseEntity.ok("Endpoint simple fonctionne !");
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<ClienteEntity> getClienteById(@PathVariable Long id) {
         ClienteEntity cliente = clienteService.getClienteById(id);

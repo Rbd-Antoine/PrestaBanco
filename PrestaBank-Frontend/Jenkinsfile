@@ -16,7 +16,6 @@ pipeline{
                     script{
                          withDockerRegistry(credentialsId: 'docker-credentials'){
                             bat "docker build --no-cache -t rbdantoine/frontend-image:latest ."
-                    }
                             bat "docker push rbdantoine/frontend-image:latest"
                         }
                     }                    

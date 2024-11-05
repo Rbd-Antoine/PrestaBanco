@@ -22,22 +22,33 @@ pipeline{
                 }
             }
         }
-        stage("Test"){
-            steps{
-                dir("PrestaBank-Backend"){
-                    bat "mvn test"
+                stage('Test backend') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'cd PrestaBank-Backend && mvn test'
+                    } else {
+                        bat 'cd PrestaBank-Backend && mvn test'
+                    }
                 }
             }
-        }        
-        stage("Build and Push Docker Image"){
-            steps{
-                dir("PrestaBank-Backend"){
-                    script{
-                         withDockerRegistry(credentialsId: 'docker-credentials'){
-                            bat "docker build --no-cache -t rbdantoine/frontend-image:latest ."
-                            bat "docker push rbdantoine/frontend-image:latest"
-                        }
-                    }                    
+        }
+        stage('Push backend') {
+            steps {
+
+                script {
+                    if (isUnix()) {
+                        sh 'docker build -t rbdantoine/backend-prestabanco:latest PrestaBank-Backend'
+                    } else {
+                        bat 'docker build -t rbdantoine/backend-prestabanco:latest PrestaBank-Backend'
+                    }
+                }
+                script {
+                    if (isUnix()) {
+                        sh 'docker push rbdantoine/backend-prestabanco:latest'
+                    } else {
+                        bat 'docker push rbdantoine/backend-prestabancoo:latest'
+                    }
                 }
             }
         }

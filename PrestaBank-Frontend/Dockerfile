@@ -1,5 +1,4 @@
-FROM nginx:alpine
-COPY /dist /usr/share/nginx/html
-COPY /nginx /etc/nginx/conf.d
-EXPOSE 3000
+FROM nginx:stable-alpine
+COPY dist /usr/share/nginx/html
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

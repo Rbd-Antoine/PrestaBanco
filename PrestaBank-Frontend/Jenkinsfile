@@ -15,8 +15,20 @@ pipeline{
                 dir("PrestaBank-Frontend"){
                     script{
                          withDockerRegistry(credentialsId: 'docker-credentials'){
-                            bat "docker build -t rbdantoine/frontend-image:latest PrestaBank-frontend"
-                            bat "docker push rbdantoine/frontend-image:latest"
+                            script {
+                                if (isUnix()) {
+                                    sh 'docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend'
+                                } else {
+                                    bat 'docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend'
+                                }
+                            }
+                            script {
+                                if (isUnix()) {
+                                    sh 'docker push rbdantoine/frontend-image:latest'
+                                } else {
+                                    bat 'docker push rbdantoine/frontend-image:latest'
+                                }
+                            }
                         }
                     }                    
                 }

@@ -44,8 +44,8 @@ pipeline {
                         bat 'docker build -t rbdantoine/backend-prestabanco:latest PrestaBank-Backend'
                     }
                 }
-                withDockerRegistry(credentialsId: 'docker-credentials'){
                     script {
+                                        withDockerRegistry(credentialsId: 'docker-credentials'){
                         if (isUnix()) {
                             sh 'docker login -u rbdantoine -p ${dockerpw}'
                         } else {
@@ -85,8 +85,9 @@ pipeline {
                     }
                 }
 
-                withDockerRegistry(credentialsId: 'docker-credentials'){
                     script {
+                                        withDockerRegistry(credentialsId: 'docker-credentials'){
+
                         if (isUnix()) {
                             sh 'docker login -u rbdantoine -p ${dockerpw}'
                         } else {

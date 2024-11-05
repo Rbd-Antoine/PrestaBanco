@@ -14,7 +14,7 @@ pipeline{
             steps{
                 dir("PrestaBank-Frontend"){
                     script{
-                         withDockerRegistry(credentialsId: 'docker-credentials'){
+                         withCredentials(credentialsId: 'docker-credentials'){
                             script {
                                 if (isUnix()) {
                                     sh 'docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend'

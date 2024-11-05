@@ -1,15 +1,17 @@
-pipeline{
+pipeline {
     agent any
-    tools{
-        maven "maven"
-
+    tools {
+        maven 'maven_3_8_1'
+        nodejs 'node'
     }
-    stages{
-        stage("Build JAR File"){
-            steps{
+    stages {
+
+        stage('Checkout repository') {
+            steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Rbd-Antoine/PrestaBanco']])
             }
         }
+
         stage('Build backend') {
             steps {
                 script {
@@ -22,7 +24,7 @@ pipeline{
                 }
             }
         }
-                stage('Test backend') {
+        stage('Test backend') {
             steps {
                 script {
                     if (isUnix()) {
@@ -38,16 +40,64 @@ pipeline{
 
                 script {
                     if (isUnix()) {
-                        sh 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
+                        sh 'docker build -t rbdantoine/backend-prestabanco:latest PrestaBank-Backend'
                     } else {
-                        bat 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
+                        bat 'docker build -t rbdantoine/backend-prestabanco:latest PrestaBank-Backend'
+                    }
+                }
+                withCredentials([string(credentialsId: 'docker-credentials', variable: 'dockerpw')]) {
+                    script {
+                        if (isUnix()) {
+                            sh 'docker login -u rbdantoine -p ${dockerpw}'
+                        } else {
+                            bat 'docker login -u rbdantoine -p %dockerpw%'
+                        }
                     }
                 }
                 script {
                     if (isUnix()) {
-                        sh 'docker push rbdantoine/backend-image:latest'
+                        sh 'docker push rbdantoine/backend-prestabanco:latest'
                     } else {
-                        bat 'docker push rbdantoine/backend-image:latest'
+                        bat 'docker push rbdantoine/backend-prestabancoo:latest'
+                    }
+                }
+            }
+        }
+        stage('Build frontend') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'cd PrestaBank-Frontend && npm run build'
+                    } else {
+                        bat 'cd PrestaBank-Frontend && npm run build'
+                    }
+                }
+            }
+        }
+        stage('Push frontend') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'docker build -t rbdantoine/frontend-prestabanco:latest PrestaBank-Frontend'
+                    } else {
+                        bat 'docker build -t rbdantoine/frontend-prestabanco:latest PrestaBank-Frontend'
+                    }
+                }
+
+                withCredentials([string(credentialsId: 'docker-credentials', variable: 'dockerpw')]) {
+                    script {
+                        if (isUnix()) {
+                            sh 'docker login -u rbdantoine -p ${dockerpw}'
+                        } else {
+                            bat 'docker login -u rbdantoine -p %dockerpw%'
+                        }
+                    }
+                }
+                script {
+                    if (isUnix()) {
+                        sh 'docker push rbdantoine/frontend-prestabanco:latest'
+                    } else {
+                        bat 'docker push rbdantoine/frontend-prestabanco:latest'
                     }
                 }
             }

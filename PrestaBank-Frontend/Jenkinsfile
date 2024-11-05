@@ -10,33 +10,18 @@ pipeline{
                 }
             }
         }
-        stage('Push frontend to docker hub ') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'docker build -t rbdantoine/frontend-image:latest PrestaBank-frontend'
-                    } else {
-                        bat 'docker build -t rbdantoine/frontend-image:latest PrestaBank-frontend'
-                    }
-                }
-
-                withCredentials([string(credentialsId: 'docker-credentials', variable: 'dockerpw')]) {
-                    script {
-                        if (isUnix()) {
-                            sh 'docker login -u rbdantoine -p ${dockerpw}'
-                        } else {
-                            bat 'docker login -u rbdantoine -p %dockerpw%'
+        stage("Build and Push Docker Image"){
+            steps{
+                dir("gestion-estudiantes-frontend"){
+                    script{
+                         withDockerRegistry(credentialsId: 'docker-credentials'){
+                            bat "docker build -t rbdantoine/frontend-image:latest PrestaBank-frontend"
+                            bat "docker push rbdantoine/frontend-image:latest"
                         }
-                    }
-                }
-                script {
-                    if (isUnix()) {
-                        sh 'docker push rbdantoine/frontend-image:latest'
-                    } else {
-                        bat 'docker push rbdantoine/frontend-image:latest'
-                    }
+                    }                    
                 }
             }
         }
     }
 }
+

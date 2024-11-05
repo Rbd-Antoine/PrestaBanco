@@ -38,9 +38,9 @@ pipeline{
 
                 script {
                     if (isUnix()) {
-                        sh 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
+                        sh 'docker build -t rbdantoine/backend-image:latest .'
                     } else {
-                        bat 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
+                        bat 'docker build -t rbdantoine/backend-image:latest .'
                     }
                 }
                 script {

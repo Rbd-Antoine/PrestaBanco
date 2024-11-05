@@ -13,22 +13,10 @@ pipeline{
         stage("Build and Push Docker Image"){
             steps{
                 dir("PrestaBank-Frontend"){
-                    script{
-                         withCredentials(credentialsId: 'docker-credentials'){
-                            script {
-                                if (isUnix()) {
-                                    sh 'docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend'
-                                } else {
-                                    bat 'docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend'
-                                }
-                            }
-                            script {
-                                if (isUnix()) {
-                                    sh 'docker push rbdantoine/frontend-image:latest'
-                                } else {
-                                    bat 'docker push rbdantoine/frontend-image:latest'
-                                }
-                            }
+                     script{
+                         withDockerRegistry(credentialsId: 'docker-credentials'){
+                            bat "docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend"
+                            bat "docker push rbdantoine/frontend-image:latest"
                         }
                     }                    
                 }

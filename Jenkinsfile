@@ -8,25 +8,34 @@ pipeline{
         stage("Build JAR File"){
             steps{
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Rbd-Antoine/PrestaBanco']])
-                dir("gestion-estudiantes-backend"){
-                    bat "mvn clean install"
+            }
+        }
+        stage('Build backend') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'cd PrestaBank-Backend && mvn clean package'
+                    } else {
+                        bat 'cd PrestaBank-Backend && mvn clean package'
+                    }
+                    
                 }
             }
         }
         stage("Test"){
             steps{
-                dir("gestion-estudiantes-backend"){
+                dir("PrestaBank-Backend"){
                     bat "mvn test"
                 }
             }
         }        
         stage("Build and Push Docker Image"){
             steps{
-                dir("gestion-estudiantes-backend"){
+                dir("PrestaBank-Backend"){
                     script{
                          withDockerRegistry(credentialsId: 'docker-credentials'){
-                            bat "docker build -t rbdantoine/gestion-estudiantes-backend ."
-                            bat "docker push rbdantoine/gestion-estudiantes-backend"
+                            bat "docker build --no-cache -t rbdantoine/frontend-image:latest ."
+                            bat "docker push rbdantoine/frontend-image:latest"
                         }
                     }                    
                 }

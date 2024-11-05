@@ -1,8 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'maven_3_8_1'
-        nodejs 'node'
+        maven 'maven'
     }
     stages {
 
@@ -67,8 +66,10 @@ pipeline {
             steps {
                 script {
                     if (isUnix()) {
+                        sh 'cd PrestaBank-Frontend && npm install'
                         sh 'cd PrestaBank-Frontend && npm run build'
                     } else {
+                        sh 'cd PrestaBank-Frontend && npm install'
                         bat 'cd PrestaBank-Frontend && npm run build'
                     }
                 }

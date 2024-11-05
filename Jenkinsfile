@@ -38,16 +38,16 @@ pipeline{
 
                 script {
                     if (isUnix()) {
-                        sh 'docker build -t rbdantoine/backend-prestabanco:latest PrestaBank-Backend'
+                        sh 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
                     } else {
-                        bat 'docker build -t rbdantoine/backend-prestabanco:latest PrestaBank-Backend'
+                        bat 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
                     }
                 }
                 script {
                     if (isUnix()) {
-                        sh 'docker push rbdantoine/backend-prestabanco:latest'
+                        sh 'docker push rbdantoine/backend-image:latest'
                     } else {
-                        bat 'docker push rbdantoine/backend-prestabancoo:latest'
+                        bat 'docker push rbdantoine/backend-image:latest'
                     }
                 }
             }

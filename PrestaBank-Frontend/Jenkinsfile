@@ -10,31 +10,16 @@ pipeline{
                 }
             }
         }
-        stage('Push frontend') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'docker build --no-cache -t rbdantoine/frontend-image:latest .'
-                    } else {
-                        bat 'docker build --no-cache -t rbdantoine/frontend-image:latest .'
+        stage("Build and Push Docker Image"){
+            steps{
+                dir("PrestaBank-Frontend"){
+                    script{
+                         withDockerRegistry(credentialsId: 'docker-credentials'){
+                            bat "docker build --no-cache -t rbdantoine/frontend-image:latest ."
                     }
-                }
-
-                withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerpw')]) {
-                    script {
-                        if (isUnix()) {
-                            sh 'docker login -u rbdantoine -p ${dockerpw}'
-                        } else {
-                            bat 'docker login -u rbdantoine -p %dockerpw%'
+                            bat "docker push rbdantoine/frontend-image:latest"
                         }
-                    }
-                }
-                script {
-                    if (isUnix()) {
-                        sh 'docker push rbdantoine/frontend-image:latest'
-                    } else {
-                        bat 'docker push rbdantoine/frontend-image:latest'
-                    }
+                    }                    
                 }
             }
         }

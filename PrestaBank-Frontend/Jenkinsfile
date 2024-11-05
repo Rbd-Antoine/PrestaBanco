@@ -14,17 +14,9 @@ pipeline{
             steps{
                 dir("PrestaBank-Frontend"){
                     script{
-                         withCredentials(credentialsId: 'docker-credentials'){
-                            if (isUnix()) {
-                                sh 'docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend'
-                            } else {
-                                bat 'docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend'
-                            }
-                            if (isUnix()) {
-                                sh 'docker push rbdantoine/frontend-image:latest'
-                            } else {
-                                bat 'docker push rbdantoine/frontend-image:latest'
-                            }
+                         withDockerRegistry(credentialsId: 'docker-credentials'){
+                            bat "docker build -t rbdantoine/frontend-image:latest PrestaBank-frontend"
+                            bat "docker push rbdantoine/frontend-image:latest"
                         }
                     }                    
                 }

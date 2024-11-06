@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor //genera un constructor sin argumentos para la clase
-@AllArgsConstructor //constructor con todos los argumentos de la clase, por si se los pasas
+@NoArgsConstructor 
+@AllArgsConstructor 
 public class DocumentacionDTO {
     private Long id;
     private String rut;

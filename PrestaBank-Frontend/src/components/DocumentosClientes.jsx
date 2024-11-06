@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import documentacionService from "../services/documentacion.service"; // Asegúrate de que la ruta es correcta
+import documentacionService from "../services/documentacion.service"; 
 import { Snackbar, Alert } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";

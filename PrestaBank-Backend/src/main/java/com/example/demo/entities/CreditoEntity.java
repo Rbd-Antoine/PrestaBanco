@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "creditos")
-@Data //genera automaticamente los getters y setters
-@NoArgsConstructor //genera un constructor sin argumentos para la clase
-@AllArgsConstructor //constructor con todos los argumentos de la clase, por si se los pasas
+@Data 
+@NoArgsConstructor 
+@AllArgsConstructor 
 public class CreditoEntity {
 
     @Id
@@ -19,7 +19,7 @@ public class CreditoEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private String rut; //para saber el cliente que ha solicitado ese credito, no se si hace fala realmente
+    private String rut; 
 
     @Column(name = "plazo", nullable = false)
     private int plazo;
@@ -36,8 +36,8 @@ public class CreditoEntity {
 
     private double valorPropiedad;
 
-    private double cuotaMensual; // no estoy segura de que haya que incluir aqui la cuota mensual
+    private double cuotaMensual;
 
     @Enumerated(EnumType.STRING)
-    private Estado estado = Estado.EN_REVISION_INICIAL; //por defecto se inicializa este valor
+    private Estado estado = Estado.EN_REVISION_INICIAL; 
 }

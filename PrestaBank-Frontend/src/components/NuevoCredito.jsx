@@ -19,7 +19,7 @@ const NuevoCredito = () => {
     const [monto, setMonto] = useState(0);
     const [plazo, setPlazo] = useState(0);
     const [tasaInteres, setTasaInteres] = useState(0.0);
-    const [tipoPrestamo, setTipoPrestamo] = useState(""); // Enum as string
+    const [tipoPrestamo, setTipoPrestamo] = useState(""); 
     const [valorPropiedad, setValorPropiedad] = useState(0);
     const [tiposPrestamo, setTiposPrestamo] = useState([]);
     const [selectedTipo, setSelectedTipo] = useState("");

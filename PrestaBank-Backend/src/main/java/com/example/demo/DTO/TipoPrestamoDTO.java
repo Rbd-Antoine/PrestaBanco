@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor //genera un constructor sin argumentos para la clase
+@NoArgsConstructor 
 @AllArgsConstructor
 public class TipoPrestamoDTO {
     private String nombre;

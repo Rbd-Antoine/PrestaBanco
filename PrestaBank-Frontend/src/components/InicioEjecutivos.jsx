@@ -85,7 +85,7 @@ const InicioEjecutivos = () => {
             .actualizarEstado(id, estado)
             .then(() => {
                 console.log("Estado actualizado.");
-                init();  // Actualiza la lista de créditos
+                init();  
             })
             .catch((error) => {
                 console.error("Error al actualizar el estado.", error);

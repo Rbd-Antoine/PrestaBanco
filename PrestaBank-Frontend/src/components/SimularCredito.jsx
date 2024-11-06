@@ -102,7 +102,7 @@ const SimularCredito = () => {
         if (tipo.estadoFinanciero) documentos.push("Estado Financiero");
         if (tipo.planNegocios) documentos.push("Plan de Negocios");
         if (tipo.presupuestoRemodelacion) documentos.push("Presupuesto de Remodelación");
-        return documentos.length > 0 ? documentos.join(", ") : "No se requieren documentos"; // Valor predeterminado
+        return documentos.length > 0 ? documentos.join(", ") : "No se requieren documentos"; 
     };
 
     return (

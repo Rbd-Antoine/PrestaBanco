@@ -14,6 +14,7 @@ pipeline{
             steps{
                 dir("PrestaBank-Frontend"){
                     script{
+                        bat "docker context use default"
                          withDockerRegistry(credentialsId: 'docker-credentials'){
                             bat "docker build -t rbdantoine/frontend-image:latest PrestaBank-Frontend"
                             bat "docker push rbdantoine/frontend-image:latest"

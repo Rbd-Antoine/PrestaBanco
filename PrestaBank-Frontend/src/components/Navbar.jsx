@@ -34,7 +34,6 @@ export default function Navbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             PrestaBanco
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
 

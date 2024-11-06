@@ -1,16 +1,15 @@
-pipeline {
+pipeline{
     agent any
-    tools {
-        maven 'maven'
-    }
-    stages {
+    tools{
+        maven "maven"
 
-        stage('Checkout repository') {
-            steps {
+    }
+    stages{
+        stage("Build JAR File"){
+            steps{
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Rbd-Antoine/PrestaBanco']])
             }
         }
-
         stage('Build backend') {
             steps {
                 script {
@@ -23,7 +22,7 @@ pipeline {
                 }
             }
         }
-        stage('Test backend') {
+                stage('Test backend') {
             steps {
                 script {
                     if (isUnix()) {
@@ -39,25 +38,16 @@ pipeline {
 
                 script {
                     if (isUnix()) {
-                        sh 'docker build -t sebsatian/backend-prestabanco:latest PrestaBank-Backend'
+                        sh 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
                     } else {
-                        bat 'docker build -t sebsatian/backend-prestabanco:latest PrestaBank-Backend'
-                    }
-                }
-                withCredentials([string(credentialsId: 'docker-credentials', variable: 'dockerpw')]) {
-                    script {
-                        if (isUnix()) {
-                            sh 'docker login -u sebsatian -p ${dockerpw}'
-                        } else {
-                            bat 'docker login -u sebsatian -p %dockerpw%'
-                        }
+                        bat 'docker build -t rbdantoine/backend-image:latest PrestaBank-Backend'
                     }
                 }
                 script {
                     if (isUnix()) {
-                        sh 'docker push sebsatian/backend-prestabanco:latest'
+                        sh 'docker push rbdantoine/backend-image:latest'
                     } else {
-                        bat 'docker push sebsatian/backend-prestabancoo:latest'
+                        bat 'docker push rbdantoine/backend-image:latest'
                     }
                 }
             }

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5e965b7-cbb7-4cd5-b2bb-056ab23e4955" name="Changes" comment="" />
+    <list default="true" id="d5e965b7-cbb7-4cd5-b2bb-056ab23e4955" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,13 +67,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/34687/Documents/Universidad/Master/USACH/Evaluacion_1/PrestaBank-Backend",
+    "last_opened_file_path": "C:/Users/RIBEAUD/Desktop/USACH cursos/Tecnicas de ingeniera de software/PrestaBanco/PrestaBank-Backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "spring",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -149,7 +155,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
       <method v="2">
@@ -193,6 +199,8 @@
       <workItem from="1729532715614" duration="34970000" />
       <workItem from="1729616314952" duration="325000" />
       <workItem from="1729616798983" duration="4368000" />
+      <workItem from="1730914251683" duration="1576000" />
+      <workItem from="1730916254482" duration="1605000" />
     </task>
     <servers />
   </component>
@@ -209,6 +217,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Evaluacion_1$All_in_demo.ic" NAME="All in demo Coverage Results" MODIFIED="1729612806568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

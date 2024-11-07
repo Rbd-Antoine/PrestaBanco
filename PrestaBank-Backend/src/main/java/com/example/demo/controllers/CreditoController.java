@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/credito")
 public class CreditoController {
-
+@CrossOrigin(origins = "*")
     @Autowired
     CreditoService creditoService;
 

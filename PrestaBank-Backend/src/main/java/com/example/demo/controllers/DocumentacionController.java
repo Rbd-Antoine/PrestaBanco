@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/documentacion")
-@CrossOrigin(origins = "*")
+@CrossOrigin("*")
 public class DocumentacionController {
     @Autowired
     DocumentacionService documentacionService;

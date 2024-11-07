@@ -13,8 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/credito")
+@CrossOrigin("*")
 public class CreditoController {
-@CrossOrigin(origins = "*")
     @Autowired
     CreditoService creditoService;
 

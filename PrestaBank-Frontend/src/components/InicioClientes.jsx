@@ -70,7 +70,7 @@ const InicioClientes = () => {
           color="primary"
           startIcon={<PersonAddIcon />}
         >
-          Añadir Cliente
+          Nuevo Cliente
         </Button>
       </Link>
       <br /> <br />
